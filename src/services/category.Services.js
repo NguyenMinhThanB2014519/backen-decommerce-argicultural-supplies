@@ -1,20 +1,20 @@
 const db = require("../data/connecttion");
 
 function makeCatalogServices() {
-  async function getCatalogs() {
+  async function getCatagories() {
     try {
-      const [catalog] = await db.promise().query("SELECT * FROM list");
+      const [catalog] = await db.promise().query("SELECT * FROM categories");
       return catalog;
     } catch (error) {
       console.error("Error fetching catalog:", error);
       throw error;
     }
   }
-  async function getCatalog(id) {
+  async function getCatagory(id) {
     try {
       const [catalog] = await db
         .promise()
-        .query("SELECT * FROM list WHERE listid = ?", [id]);
+        .query("SELECT * FROM products WHERE category_id = ?", [id]);
       return catalog[0];
     } catch (error) {
       console.error("Error fetching catalog:", error);
@@ -22,8 +22,8 @@ function makeCatalogServices() {
     }
   }
   return {
-    getCatalogs,
-    getCatalog,
+    getCatagory,
+    getCatagories,
   };
 }
 

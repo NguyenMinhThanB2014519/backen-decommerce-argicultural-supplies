@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const loginRoute = require("./routes/login.route");
-const catalogRouter = require("./routes/catolog.Router");
+const category = require("./routes/category.Router");
+const products = require("./routes/products");
 const dbConnect = require("./data/connecttion");
 
 app.use(cors());
@@ -23,7 +24,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/login", loginRoute);
-app.use("/catalog", catalogRouter);
+app.use("/category", category);
+app.use("/products", products);
 
 // Connect to the database
 
